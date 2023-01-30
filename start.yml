@@ -6,7 +6,7 @@ title: GitHub Actions
 title_link: https://support.github.com
 
 text: |
-  [GitHub] Starting workflow {{workflow}} #{{runNumber}} {{jobName}} ...
+  Starting <{{workflowRunUrl}}|Workflow _{{workflow}}_ #{{runNumber}} *{{jobName}}>* ...
 
 fallback: |-
   [GitHub] {{workflow}} #{{runNumber}} {{jobName}} is {{jobStatus}}
