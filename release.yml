@@ -6,25 +6,10 @@ title: GitHub Actions
 title_link: https://support.github.com
 
 text: &text |
-  test
-  
   *<{{workflowRunUrl}}|Workflow _{{workflow}}_ job _{{jobName}}_ triggered by _{{eventName}}_ is _{{jobStatus}}_>* for <{{refUrl}}|`{{ref}}`>
-  {{#if description}}<{{diffUrl}}|`{{diffRef}}`> - {{{description}}}{{/if}}
-  {{#if payload.commits}}
-  *Commits*
-  {{#each payload.commits}}
-  <{{this.url}}|`{{truncate this.id 8}}`> - {{this.message}}
-  {{/each}}
-  {{/if}}
 
 fallback: |-
   [GitHub] {{workflow}} #{{runNumber}} {{jobName}} is {{jobStatus}}
-fields:
-  - title: Job Steps
-    value: |-
-      {{#each jobSteps}}{{#ifneq this.outcome 'skipped'}}{{icon this.outcome}} {{@key}}
-      {{/ifneq}}{{/each}}
-    short: false
 
 blocks:
   # author
@@ -51,29 +36,17 @@ blocks:
       type: button
       text:
         type: plain_text
-        text: Test
-      url: https://google.com
+        text: New Release
+      url: >-
+        {{repositoryUrl}}/releases/new
+      style: primary
 
-  # fields
-  - type: section
-    fields:
-    - type: mrkdwn
-      text: |-
-        *Job Steps*
-        {{#each jobSteps}}{{#ifneq this.outcome 'skipped'}}{{icon this.outcome}} {{@key}}
-        {{/ifneq}}{{/each}}
   - type: section
     fields:
     - type: mrkdwn
       text: "*Workflow*\n<{{{workflowUrl}}}|{{workflow}}>"
     - type: mrkdwn
       text: "*Git Ref*\n{{ref}} ({{refType}})"
-    - type: mrkdwn
-      text: |-
-        *Run ID*
-        <{{workflowRunUrl}}|{{runId}}>
-    - type: mrkdwn
-      text: "*Run Number*\n{{runNumber}}"
     - type: mrkdwn
       text: "*Actor*\n{{actor}}"
     - type: mrkdwn
