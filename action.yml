@@ -12,9 +12,6 @@ runs:
   steps:
     - run: echo Notifying Slack
       shell: bash
-    - name: Check if config is readable
-      run: cat ${{ github.action_path }}/${{ inputs.template }}.yml
-      shell: bash
     - name: slack - GitHub Actions Slack integration
       uses: act10ns/slack@v2.0.0
       with:
