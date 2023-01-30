@@ -6,7 +6,6 @@ inputs:
     default: "push"
   slack_webhook_url:
     required: false
-    default: ${{ env.SLACK_WEBHOOK_URL }}
     
 runs:
   using: "composite"
@@ -16,11 +15,13 @@ runs:
     - name: Change directory to action path
       run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash
+    - name: Check if config is readable
+      run: cat ./${{ inputs.template }}.yml
     - name: slack - GitHub Actions Slack integration
       uses: act10ns/slack@v2.0.0
       with:
         status: ${{ job.status }}
         steps: ${{ toJson(steps) }}
-        config: ${{ inputs.template }}.yml
+        config: ./${{ inputs.template }}.yml
       env:
-        SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook_url }}
+        SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook_url || env.SLACK_WEBHOOK_URL }}
