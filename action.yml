@@ -5,7 +5,7 @@ inputs:
     required: true
     default: "push"
   slack_webhook_url:
-    required: true
+    required: false
     default: ${{ env.SLACK_WEBHOOK_URL }}
     
 runs:
