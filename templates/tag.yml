@@ -6,7 +6,7 @@ title: GitHub Actions
 title_link: https://support.github.com
 
 text: |
-  *<{{workflowRunUrl}}|Workflow _{{workflow}}_ job _{{jobName}}_ triggered by _{{eventName}}_ is _{{jobStatus}}{{icon jobStatus}}_>* for <{{refUrl}}|`{{ref}}`>
+  *<{{workflowRunUrl}}|Workflow _{{workflow}}_ job _{{jobName}}_ triggered by _{{eventName}}_ is _{{jobStatus}} {{icon jobStatus}}_>* for <{{refUrl}}|`{{ref}}`>
   {{#if description}}<{{diffUrl}}|`{{diffRef}}`> - {{description}}{{/if}}
   {{#if payload.commits}}
   *Commits*
@@ -16,7 +16,7 @@ text: |
   {{/if}}
 
 fallback: |-
-  [GitHub] {{workflow}} #{{runNumber}} {{jobName}} is {{jobStatus}}{{icon jobStatus}}
+  [GitHub] {{workflow}} #{{runNumber}} {{jobName}} is {{jobStatus}} {{icon jobStatus}}
 
 fields:
   - title: Job Steps
@@ -39,21 +39,22 @@ fields:
     value: "{{actor}}"
     short: true
   - title: Job Status
-    value: "{{jobStatus}}{{icon jobStatus}}"
+    value: "{{jobStatus}} {{icon jobStatus}}"
     short: true
 
 footer: >-
   <{{repositoryUrl}}|{{repositoryName}}> {{workflow}} #{{runNumber}}
 
 colors:
-  success: '#5DADE2'
-  failure: '#884EA0'
-  cancelled: '#A569BD'
-  default: '#7D3C98'
+  success: '#54B452'
+  failure: '#DD434E'
+  cancelled: '#FD7E14'
+  skipped: '#DDCAE2'
+  default: '#B0E1F7'
 
 icons:
   success: ':white_check_mark:'
-  failure: ':grimacing:'
-  cancelled: ':x:'
+  failure: ':x:'
+  cancelled: ':heavy_multiplication_x:'
   skipped: ':heavy_minus_sign:'
-  default: ':interrobang:'
+  default: ':computer:'

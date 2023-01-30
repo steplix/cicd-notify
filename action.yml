@@ -19,6 +19,6 @@ runs:
       with:
         status: ${{ inputs.status || job.status }}
         steps: ${{ toJson(steps) }}
-        config: ${{ github.action_path }}/${{ inputs.template }}.yml
+        config: ${{ github.action_path }}/templates/${{ inputs.template }}.yml
       env:
         SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook_url || env.SLACK_WEBHOOK_URL }}
