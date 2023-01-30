@@ -9,7 +9,7 @@ text: |
   Starting <{{workflowRunUrl}}|Workflow _{{workflow}}_ #{{runNumber}} *{{jobName}}>* ...
 
 fallback: |-
-  [GitHub] {{workflow}} #{{runNumber}} {{jobName}} is {{jobStatus}}
+  [GitHub] {{workflow}} #{{runNumber}} {{jobName}} is {{jobStatus}}{{icon jobStatus}}
 
 fields:
   - title: Job Steps
@@ -32,7 +32,7 @@ fields:
     value: "{{actor}}"
     short: true
   - title: Job Status
-    value: "{{jobStatus}}"
+    value: "{{jobStatus}}{{icon jobStatus}}"
     short: true
 
 footer: >-

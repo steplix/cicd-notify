@@ -2,14 +2,9 @@ username: Slack Bot
 icon_url: https://s3-us-west-2.amazonaws.com/slack-files2/bot_icons/2023-01-09/4618522117268_48.png
 
 pretext: Triggered via {{eventName}} by {{actor}} {{default action "action"}} {{ref}} `{{diffRef}}`
-title: GitHub Actions
-title_link: https://support.github.com
-
-text: &text |
-  Tag *<{{repositoryUrl}}/tree/{{env.NEW_TAG}}|{{env.NEW_TAG}}>* is ready to deploy!
 
 fallback: |-
-  [GitHub] {{workflow}} #{{runNumber}} {{jobName}} is {{jobStatus}}
+  [GitHub] {{workflow}} #{{runNumber}} {{jobName}} is {{jobStatus}}{{icon jobStatus}}
 
 blocks:
   # author
@@ -26,12 +21,13 @@ blocks:
     text:
       type: mrkdwn
       text: |
-        *<{{title_link}}|{{title}}>*
+        *<https://support.github.com|GitHub Actions>*
   # text
   - type: section
     text:
       type: mrkdwn
-      text: *text
+      text: >-
+        Tag *<{{repositoryUrl}}/tree/{{env.NEW_TAG}}|{{env.NEW_TAG}}>* is ready to deploy!
     accessory:
       type: button
       text:

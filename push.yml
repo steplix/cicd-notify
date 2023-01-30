@@ -6,7 +6,7 @@ title: GitHub Actions
 title_link: https://support.github.com
 
 text: |
-  *<{{workflowRunUrl}}|Workflow _{{workflow}}_ job _{{jobName}}_ triggered by _{{eventName}}_ is _{{jobStatus}}_>* for <{{refUrl}}|`{{ref}}`>
+  *<{{workflowRunUrl}}|Workflow _{{workflow}}_ job _{{jobName}}_ triggered by _{{eventName}}_ is _{{jobStatus}}{{icon jobStatus}}_>* for <{{refUrl}}|`{{ref}}`>
   {{#if description}}<{{diffUrl}}|`{{diffRef}}`> - {{description}}{{/if}}
   {{#if payload.commits}}
   *Commits*
@@ -16,7 +16,7 @@ text: |
   {{/if}}
 
 fallback: |-
-  [GitHub] {{workflow}} #{{runNumber}} {{jobName}} is {{jobStatus}}
+  [GitHub] {{workflow}} #{{runNumber}} {{jobName}} is {{jobStatus}}{{icon jobStatus}}
 
 fields:
   - title: Job Steps
@@ -39,7 +39,7 @@ fields:
     value: "{{actor}}"
     short: true
   - title: Job Status
-    value: "{{jobStatus}}"
+    value: "{{jobStatus}}{{icon jobStatus}}"
     short: true
 
 footer: >-
