@@ -57,7 +57,7 @@ blocks:
   - type: section
     text:
       type: mrkdwn
-      text: *text
+      text: "some test text"
       accessory:
         type: button
         test:
