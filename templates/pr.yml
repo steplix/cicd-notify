@@ -9,8 +9,8 @@ title_link: "{{repositoryUrl}}"
 text: "New Pull Request has been created and is waiting for you to Review It :party-parrot:\n‎"
 
 fields:
-  - title: "Pull Request #{{jobSteps.pr.outputs.pr_number}}"
-    value: "<{{jobSteps.pr.outputs.pr_url}}|:clap: Review it>"
+  - title: "Pull Request #{{env.PR_NUMBER}}"
+    value: "<{{env.PR_URL}}|:clap: Review it>"
     short: false
 
 footer: "workflow: {{workflow}} #{{runNumber}}"

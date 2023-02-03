@@ -29,8 +29,6 @@ Pass the name of the to use, available templates:
 1. pr
 2. push
 3. release
-4. start
-5. tag
 
 ``` yaml
 with:
@@ -82,24 +80,13 @@ with:
     channel: '#workflows'
 ```
 
-## IMPORTANT
+### Template requirements
 
-To use the `pr` template, keep in mind that it must be within the same job after a step with id `pr` and that it has the following outputs:
+#### `pr` template
 
-``` json
-{
-    "outputs": {
-        "pr_url": "https://github.com/steplix/jira-integration/pull/12",
-        "pr_number": "12"
-    }
-}
-```
+The `pr` template require 2 environment variables (`env`) `PR_URL` AND `PR_NUMBER`.
 
-**NOTE: Is very important send the `steps` parameter**
-
-### `Example`
-
-The action [pull-request@v2](https://github.com/repo-sync/pull-request) create an new PR and send the required output.
+The action [pull-request@v2](https://github.com/repo-sync/pull-request) create an new PR and output the url and number.
 
 ``` yaml
 jobs:
@@ -116,7 +103,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: slack - GitHub Actions Slack integration
-        uses: steplix/cicd-notify@0.0.18
+        uses: steplix/cicd-notify@1.0.0
         with:
           template: pr
           channel: '#back-test-pipes'
@@ -124,4 +111,26 @@ jobs:
           steps: ${{ toJson(steps) }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          PR_URL: ${{ steps.pr.outputs.pr_url }}
+          PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
+```
+
+#### `release` template
+
+The `release` template require `NEW_TAG` environment variables (`env`).
+
+``` yaml
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: slack - GitHub Actions Slack integration
+        uses: steplix/cicd-notify@1.0.0
+        with:
+          template: release
+          channel: '#back-test-pipes'
+          status: ${{ job.status }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          NEW_TAG: '1.0.1'
 ```
