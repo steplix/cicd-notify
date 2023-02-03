@@ -95,6 +95,8 @@ To use the `pr` template, keep in mind that it must be within the same job after
 }
 ```
 
+**NOTE: Is very important send the `steps` parameter**
+
 ### `Example`
 
 The action [pull-request@v2](https://github.com/repo-sync/pull-request) create an new PR and send the required output.
@@ -118,6 +120,8 @@ jobs:
         with:
           template: pr
           channel: '#back-test-pipes'
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 ```
