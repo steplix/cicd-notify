@@ -8,6 +8,8 @@ inputs:
     required: false
   status:
     required: false
+  channel:
+    required: false
     
 runs:
   using: "composite"
@@ -20,5 +22,6 @@ runs:
         status: ${{ inputs.status || job.status }}
         steps: ${{ toJson(steps) }}
         config: ${{ github.action_path }}/templates/${{ inputs.template }}.yml
+        channel: ${{ inputs.channel }}
       env:
         SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook_url || env.SLACK_WEBHOOK_URL }}
