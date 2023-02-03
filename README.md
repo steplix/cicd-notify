@@ -37,6 +37,22 @@ with:
     template: push
 ```
 
+#### `status` (required)
+
+The `status` must be defined. It can either be the current job status using:
+
+``` yaml
+with:
+    status: ${{ job.status }}
+```
+
+or a hardcoded custom status such as "starting" or "in progress":
+
+``` yaml
+with:
+    status: in progress
+```
+
 #### `slack_webhook_url` (optional)
 
 Only required if the `SLACK_WEBHOOK_URL` environment variable is not set.
@@ -46,14 +62,16 @@ with:
     slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
 ```
 
-#### `status` (optional)
+#### `steps` (optional)
 
-By default value, is the current job status `${{job.status}}`. If required, can be sent a custom hardcoded value such as "starting" or "in progress":
+The individual status of job steps can be included in the Slack message using:
 
 ``` yaml
 with:
-    status: in progress
+    steps: ${{ steps }}
 ```
+
+Note: Only steps that have a "step id" will be reported on. See example below.
 
 #### `channel` (optional)
 
