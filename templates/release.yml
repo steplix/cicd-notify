@@ -31,7 +31,7 @@ blocks:
         type: plain_text
         text: New Release
       url: >-
-        {{repositoryUrl}}/releases/new
+        {{repositoryUrl}}/releases/new?tag={{env.NEW_TAG}}&title={{env.NEW_TAG}}
       style: primary
 
   - type: section
