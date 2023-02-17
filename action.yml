@@ -12,7 +12,10 @@ inputs:
     required: false
   channel:
     required: false
-    
+  icon_url:
+    required: false
+    default: https://s3-us-west-2.amazonaws.com/slack-files2/bot_icons/2023-01-09/4618522117268_48.png
+
 runs:
   using: "composite"
   steps:
@@ -27,3 +30,4 @@ runs:
         channel: ${{ inputs.channel }}
       env:
         SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook_url || env.SLACK_WEBHOOK_URL }}
+        ICON_URL: ${{ inputs.icon_url }}

@@ -80,6 +80,17 @@ with:
     channel: '#workflows'
 ```
 
+#### `logo_url` (optional)
+
+Logo displayed in slack message.
+
+``` yaml
+with:
+    logo_url: 'https://s3-us-west-2.amazonaws.com/slack-files2/bot_icons/2023-01-09/4618522117268_48.png'
+```
+
+Default logo is: ![Default logo](https://s3-us-west-2.amazonaws.com/slack-files2/bot_icons/2023-01-09/4618522117268_48.png "Default logo")
+
 ### Template requirements
 
 #### `pr` template

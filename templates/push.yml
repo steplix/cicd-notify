@@ -1,5 +1,5 @@
 username: Slack Bot
-icon_url: https://s3-us-west-2.amazonaws.com/slack-files2/bot_icons/2023-01-09/4618522117268_48.png
+icon_url: ${{env.ICON_URL}}
 
 pretext: Triggered via {{eventName}} by {{actor}} {{or action "action"}} {{ref}} `{{diffRef}}`
 title: GitHub Actions
