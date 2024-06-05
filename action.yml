@@ -22,7 +22,7 @@ runs:
     - run: echo Notifying Slack
       shell: bash
     - name: slack - GitHub Actions Slack integration
-      uses: act10ns/slack@v2.0.0
+      uses: act10ns/slack@v2.1.0
       with:
         status: ${{ inputs.status }}
         steps: ${{ inputs.steps }}
